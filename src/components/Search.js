@@ -1,9 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
 
-function Search() {
+function Search({onSearchSubmit}) {
+
+  //search state lives here
+  //listings ONLY UPDATE ON SUBMIT this way
+  const [search, setSearch] = useState('');
+
+
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("submitted");
+    onSearchSubmit(search);
   }
 
   return (
@@ -12,8 +18,8 @@ function Search() {
         type="text"
         id="search"
         placeholder="search free stuff"
-        value={""}
-        onChange={(e) => console.log(e.target.value)}
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
       />
       <button type="submit">🔍</button>
     </form>
